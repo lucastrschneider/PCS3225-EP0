@@ -4,7 +4,7 @@
 --! @author Bruno Albertini (balbertini@usp.br)
 --! @date 20200605
 
---! Last submission #1501
+--! Last submission #1502
 --------------------------------------------------------------------------------
 
 -------------------------------------------------------
@@ -31,6 +31,9 @@ end architecture;
 --! @author balbertini@usp.br
 --! @brief 8-bit ALU (S1A2)
 -------------------------------------------------------
+library ieee;
+use ieee.numeric_bit.all;
+
 entity alu is
   port (
     A, B : in  bit_vector(3 downto 0); -- inputs
@@ -66,4 +69,6 @@ begin
     res     when others; -- sum or sub
   -- Copying temporary signal to output
   F <= aluout;
+  -- Flags
+  Z <= '1' when unsigned(aluout) = 0 else '0';
 end architecture structural;
